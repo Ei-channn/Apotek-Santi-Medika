@@ -22,12 +22,7 @@
             <p>Silakan masuk ke akun Anda</p>
         </div>
 
-        <!-- Error Alert (Hidden by default, show when needed) -->
-        <!-- <div class="alert alert-error">
-            <span>Email atau password salah!</span>
-        </div> -->
-
-        <form action="/login" method="POST" class="login-form" id="loginForm">
+        <form action="{{ route('login') }}" method="POST" class="login-form" id="loginForm">
             @csrf
             <div class="form-group">
                 <label for="email">Email</label>
@@ -79,54 +74,6 @@
             passwordInput.setAttribute('type', type);
             this.textContent = type === 'password' ? '👁️' : '🙈';
         });
-
-        // Form Submission
-        // const loginForm = document.getElementById('loginForm');
-        // const loginBtn = document.getElementById('loginBtn');
-
-        // loginForm.addEventListener('submit', function(e) {
-        //     // For demo - remove in production
-        //     e.preventDefault();
-
-        //     // Add loading state
-        //     loginBtn.classList.add('loading');
-        //     loginBtn.disabled = true;
-
-        //     // Simulate API call (remove in production)
-        //     setTimeout(() => {
-        //         loginBtn.classList.remove('loading');
-        //         loginBtn.disabled = false;
-
-        //         // Show success (for demo)
-        //         const alert = document.createElement('div');
-        //         alert.className = 'alert alert-success';
-        //         alert.innerHTML = '<span>Login berhasil! Mengalihkan...</span>';
-        //         loginForm.insertBefore(alert, loginForm.firstChild);
-
-        //         // Redirect (uncomment in production)
-        //         // window.location.href = '/dashboard';
-        //     }, 1500);
-        // });
-
-        // Input Animation on Focus
-        // const inputs = document.querySelectorAll('.form-group input');
-        // inputs.forEach(input => {
-        //     input.addEventListener('focus', function() {
-        //         this.parentElement.style.transform = 'translateY(-2px)';
-        //     });
-
-        //     input.addEventListener('blur', function() {
-        //         this.parentElement.style.transform = 'translateY(0)';
-        //     });
-        // });
-
-        // Prevent multiple submissions
-        // loginForm.addEventListener('submit', function() {
-        //     loginBtn.disabled = true;
-        //     setTimeout(() => {
-        //         loginBtn.disabled = false;
-        //     }, 2000);
-        // });
     </script>
 
 </body>
