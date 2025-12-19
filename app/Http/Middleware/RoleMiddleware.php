@@ -4,20 +4,18 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
-    public function handle(Request $request, Closure $next, ...$roles)
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
+        if (!auth()->check()) {
+            return redirect('/login');
         }
 
-        $user = Auth::user();
-        if (!$user->hasAnyRole($roles)) {
-            // Alih-alih redirect ke login (yang menyebabkan loop), redirect ke dashboard atau halaman error
-            return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        if (!in_array(auth()->user()->role, $roles)) {
+            abort(403, 'Akses ditolak');
         }
 
         return $next($request);

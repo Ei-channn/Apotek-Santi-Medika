@@ -22,7 +22,7 @@
             <p>Silakan masuk ke akun Anda</p>
         </div>
 
-        <form action="{{ route('login') }}" method="POST" class="login-form" id="loginForm">
+        <form action="/login" method="POST" class="login-form" id="loginForm">
             @csrf
             <div class="form-group">
                 <label for="email">Email</label>
