@@ -66,7 +66,7 @@
                         <h3>History Transaksi</h3>
 
                         <form method="GET" class="filter-form" id="filterForm">
-                            <div class="form-row"> 
+                            <div class="form-row">
                                 <div class="form-group">
                                     <label>Dari Tanggal</label>
                                     <input type="date" name="start_date" value="{{ request('start_date') }}">
@@ -76,7 +76,7 @@
                                     <label>Sampai Tanggal</label>
                                     <input type="date" name="end_date" value="{{ request('end_date') }}">
                                 </div>
-                                    <button type="submit" class="btn">Filter</button>
+                                <button type="submit" class="btn">Filter</button>
                             </div>
                         </form>
                     </div>
@@ -108,7 +108,7 @@
                             </tr>
                         @endforeach
                     </table><br>
-                    
+
                     {{-- {{ $transactions->links() }} --}}
                     {{ $transactions->withQueryString()->links() }}
 

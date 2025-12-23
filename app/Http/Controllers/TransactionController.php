@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Medicine;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use Illuminate\Support\Facades\DB;
+
 
 class TransactionController extends Controller
 {
@@ -140,8 +142,24 @@ class TransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Transaction $transaction)
     {
-        //
+        DB::transaction(function () use ($transaction) {
+
+            // kembalikan stok obat
+            foreach ($transaction->details as $detail) {
+                $detail->medicine->increment('stock', $detail->quantity);
+            }
+
+            // hapus detail dulu
+            $transaction->details()->delete();
+
+            // hapus transaksi
+            $transaction->delete();
+        });
+
+        return redirect()
+            ->route('transactions.index')
+            ->with('success', 'Transaksi berhasil dihapus');
     }
 }

@@ -126,9 +126,23 @@
                     <button class="btn">
                         <a href="{{ route('transactions.index') }}" style="color:white;">← Kembali ke History</a>
                     </button>
+                    @auth
+                        @if (auth()->user()->role === 'admin')
+                            <form action="{{ route('transactions.destroy', $transaction->id) }}" method="POST"
+                                style="display:inline" onsubmit="return confirm('Yakin ingin menghapus transaksi ini?')">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="back">
+                                        Hapus Transaksi
+                                </button>
+                            </form>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </main>
     </div>
 </body>
+
 </html>

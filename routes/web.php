@@ -18,7 +18,7 @@ Route::middleware(['auth', 'role:admin,kasir'])->group(function () {
         ->name('dashboard');
 });
 
-Route::middleware(['auth','role:admin'])->group(function () {
+Route::middleware(['auth','role:admin,kasir'])->group(function () {
     Route::get('/reports/daily', [ReportController::class, 'dailyReport'])->name('reports.daily');
     Route::get('/reports/monthly', [ReportController::class, 'monthlyReport'])->name('reports.monthly');
 });
@@ -39,6 +39,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transactions', [TransactionController::class, 'index'])
         ->middleware('auth')
         ->name('transactions.index');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::delete('/transactions/{transaction}', 
+        [TransactionController::class, 'destroy']
+    )->name('transactions.destroy');
 });
 
 Route::middleware(['auth','role:admin,kasir'])->group(function () {
