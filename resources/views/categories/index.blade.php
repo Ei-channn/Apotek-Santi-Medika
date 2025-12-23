@@ -99,6 +99,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $categories->links() }}
                 </div>
             </div>
         </main>
@@ -159,6 +160,3 @@
     // load awal
     // loadCategory();
 </script>
-
-
-{{ $categories->links() }}

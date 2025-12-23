@@ -101,6 +101,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $medicines->links() }}
                 </div>
             </div>
         </main>
@@ -143,4 +144,4 @@
 </script>
 
 
-{{ $medicines->links() }}
+
