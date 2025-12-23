@@ -219,7 +219,6 @@
                                         tbody.innerHTML += `
                         <tr onclick='addItem(${JSON.stringify(med)})'
                             style="cursor: pointer;">
-                            <td>${med.code}</td>
                             <td>${med.name}</td>
                             <td>${med.category.name}</td>
                             <td>${med.price}</td>
