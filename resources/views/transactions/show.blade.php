@@ -78,7 +78,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Obat</th>
+                                {{-- <th>Kode Obat</th> --}}
                                 <th>Nama Obat</th>
                                 <th>Kategori</th>
                                 <th>Harga</th>
@@ -90,7 +90,7 @@
                             @foreach ($transaction->details as $detail)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $detail->medicine->code }}</td>
+                                    {{-- <td>{{ $detail->medicine->code }}</td> --}}
                                     <td>{{ $detail->medicine->name }}</td>
                                     <td>{{ $detail->medicine->category->name }}</td>
                                     <td>{{ number_format($detail->price) }}</td>

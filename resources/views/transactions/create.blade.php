@@ -78,7 +78,7 @@
                     <table id="result">
                         <thead>
                             <tr>
-                                <th>Kode</th>
+                                {{-- <th>Kode</th> --}}
                                 <th>Nama</th>
                                 <th>Kategori</th>
                                 <th>Harga</th>
@@ -90,7 +90,7 @@
                         <tbody>
                             @foreach ($medicines as $m)
                                 <tr onclick='addItem(@json($m))' style="cursor:pointer;">
-                                    <td>{{ $m->code }}</td>
+                                    {{-- <td>{{ $m->code }}</td> --}}
                                     <td>{{ $m->name }}</td>
                                     <td>{{ $m->category->name }}</td>
                                     <td>{{ number_format($m->price) }}</td>

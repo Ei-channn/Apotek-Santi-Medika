@@ -69,7 +69,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Kode</th>
+                                {{-- <th>Kode</th> --}}
                                 <th>Nama</th>
                                 <th>Stok</th>
                                 <th>Harga</th>
@@ -81,7 +81,7 @@
                         <tbody id="medicine-body">
                             @foreach ($medicines as $m)
                                 <tr>
-                                    <td>{{ $m->code }}</td>
+                                    {{-- <td>{{ $m->code }}</td> --}}
                                     <td>{{ $m->name }}</td>
                                     <td>{{ $m->stock }}</td>
                                     <td>{{ number_format($m->price) }}</td>
@@ -121,7 +121,6 @@
                 data.forEach(m => {
                     tbody.innerHTML += `
                 <tr>
-                    <td>${m.code}</td>
                     <td>${m.name}</td>
                     <td>${m.category.name}</td>
                     <td>${m.stock}</td>

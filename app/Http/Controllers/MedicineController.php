@@ -28,7 +28,7 @@ class MedicineController extends Controller
     public function search(Request $request)
     {
         return Medicine::with('category')
-        ->where('code', 'like', '%' . $request->q . '%')
+        // ->where('code', 'like', '%' . $request->q . '%')
         ->orWhere('name', 'like', '%' . $request->q . '%')
         ->orWhereHas('category', function ($cat) use ($request) {
             $cat->where('name', 'like', '%' . $request->q . '%');
@@ -42,7 +42,6 @@ class MedicineController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|unique:medicines',
             'name' => 'required',
             'category_id' => 'required',
             'stock' => 'required|integer|min:0',
@@ -50,7 +49,14 @@ class MedicineController extends Controller
             'expired_date' => 'required|date'
         ]);
 
-        Medicine::create($request->all());
+        Medicine::create($request->only([
+            'name',
+            'category_id',
+            'stock',
+            'price',
+            'expired_date'
+        ]));
+
 
         return redirect()->route('medicines.index')
             ->with('success', 'Obat berhasil ditambahkan');
@@ -67,7 +73,6 @@ class MedicineController extends Controller
     public function update(Request $request, Medicine $medicine)
     {
         $request->validate([
-            'code' => 'required|unique:medicines,code,' . $medicine->id,
             'name' => 'required',
             'category_id' => 'required',
             'stock' => 'required|integer|min:0',

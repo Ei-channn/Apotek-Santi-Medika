@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->unique();
             $table->string('name');
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->integer('stock');

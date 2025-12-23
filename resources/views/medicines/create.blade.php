@@ -75,8 +75,8 @@
                     <form action="{{ route('medicines.store') }}" method="POST">
                         @csrf
 
-                        <label>Kode Obat</label><br>
-                        <input type="text" name="code" value="{{ old('code') }}" required><br><br>
+                        {{-- <label>Kode Obat</label><br>
+                        <input type="text" name="code" value="{{ old('code') }}" required><br><br> --}}
 
                         <label>Nama Obat</label><br>
                         <input type="text" name="name" value="{{ old('name') }}" required><br><br>

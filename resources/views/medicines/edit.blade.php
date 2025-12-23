@@ -76,9 +76,9 @@
                         @csrf
                         @method('PUT')
 
-                        <label>Kode Obat</label><br>
+                        {{-- <label>Kode Obat</label><br>
                         <input type="text" name="code" value="{{ old('code', $medicine->code) }}"
-                            required><br><br>
+                            required><br><br> --}}
 
                         <label>Nama Obat</label><br>
                         <input type="text" name="name" value="{{ old('name', $medicine->name) }}"
