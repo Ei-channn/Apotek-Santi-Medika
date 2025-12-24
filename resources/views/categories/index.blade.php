@@ -67,38 +67,39 @@
                     </div>
                     <input type="text" id="search" placeholder="Cari kategori">
                     <br><br>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nama Kategori</th>
-                                <th>Jumlah Obat</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="category-body">
-                            @foreach ($categories as $category)
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>
-                                        {{ $category->name }}
-                                    </td>
-                                    <td>{{ $category->medicines_count }} item</td>
-                                    <td>
-                                        <a href="{{ route('categories.edit', $category->id) }}"
-                                            style="color:blue;">Edit</a>
-                                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
-                                            style="display:inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                style="background-color:rgba(240, 248, 255, 0);
-                                                        border:none;cursor: pointer;color:red; font-size:11px">Hapus</button>
-                                        </form>
-                                    </td>
+                                    <th>Nama Kategori</th>
+                                    <th>Jumlah Obat</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody id="category-body">
+                                @foreach ($categories as $category)
+                                    <tr>
+                                        <td>
+                                            {{ $category->name }}
+                                        </td>
+                                        <td>{{ $category->medicines_count }} item</td>
+                                        <td>
+                                            <a href="{{ route('categories.edit', $category->id) }}"
+                                                style="color:blue;">Edit</a>
+                                            <form action="{{ route('categories.destroy', $category->id) }}"
+                                                method="POST" style="display:inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background-color:rgba(240, 248, 255, 0);
+                                                        border:none;cursor: pointer;color:red; font-size:11px">Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     {{ $categories->links() }}
                 </div>
             </div>

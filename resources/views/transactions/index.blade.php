@@ -81,33 +81,35 @@
                         </form>
                     </div>
 
-                    <table>
-                        <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Kasir</th>
-                            <th>Total</th>
-                            <th>Bayar</th>
-                            <th>Kembali</th>
-                            <th>Aksi</th>
-                        </tr>
-
-                        @foreach ($transactions as $trx)
+                    <div class="table-wrapper">
+                        <table>
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $trx->transaction_date }}</td>
-                                <td>{{ $trx->user->name }}</td>
-                                <td>{{ number_format($trx->total_price) }}</td>
-                                <td>{{ number_format($trx->payment) }}</td>
-                                <td>{{ number_format($trx->change) }}</td>
-                                <td>
-                                    <a href="{{ route('transactions.show', $trx->id) }}">
-                                        Detail
-                                    </a>
-                                </td>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Kasir</th>
+                                <th>Total</th>
+                                <th>Bayar</th>
+                                <th>Kembali</th>
+                                <th>Aksi</th>
                             </tr>
-                        @endforeach
-                    </table><br>
+
+                            @foreach ($transactions as $trx)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $trx->transaction_date }}</td>
+                                    <td>{{ $trx->user->name }}</td>
+                                    <td>{{ number_format($trx->total_price) }}</td>
+                                    <td>{{ number_format($trx->payment) }}</td>
+                                    <td>{{ number_format($trx->change) }}</td>
+                                    <td>
+                                        <a href="{{ route('transactions.show', $trx->id) }}">
+                                            Detail
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div><br>
 
                     {{-- {{ $transactions->links() }} --}}
                     {{ $transactions->withQueryString()->links() }}

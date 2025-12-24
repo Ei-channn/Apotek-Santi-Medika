@@ -73,74 +73,76 @@
                     </p>
 
                     <br><br>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                {{-- <th>Kode Obat</th> --}}
-                                <th>Nama Obat</th>
-                                <th>Kategori</th>
-                                <th>Harga</th>
-                                <th>Qty</th>
-                                <th>Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($transaction->details as $detail)
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    {{-- <td>{{ $detail->medicine->code }}</td> --}}
-                                    <td>{{ $detail->medicine->name }}</td>
-                                    <td>{{ $detail->medicine->category->name }}</td>
-                                    <td>{{ number_format($detail->price) }}</td>
-                                    <td>{{ $detail->quantity }}</td>
-                                    <td>{{ number_format($detail->subtotal) }}</td>
+                                    <th>No</th>
+                                    {{-- <th>Kode Obat</th> --}}
+                                    <th>Nama Obat</th>
+                                    <th>Kategori</th>
+                                    <th>Harga</th>
+                                    <th>Qty</th>
+                                    <th>Subtotal</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($transaction->details as $detail)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        {{-- <td>{{ $detail->medicine->code }}</td> --}}
+                                        <td>{{ $detail->medicine->name }}</td>
+                                        <td>{{ $detail->medicine->category->name }}</td>
+                                        <td>{{ number_format($detail->price) }}</td>
+                                        <td>{{ $detail->quantity }}</td>
+                                        <td>{{ number_format($detail->subtotal) }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <br><br>
+                        <br><br>
 
-                    <h3>Ringkasan Pembayaran</h3>
-                    <table>
-                        <tr>
-                            <td>Total Harga</td>
-                            <td>:</td>
-                            <td><strong>{{ number_format($transaction->total_price) }}</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Bayar</td>
-                            <td>:</td>
-                            <td>{{ number_format($transaction->payment) }}</td>
-                        </tr>
-                        <tr>
-                            <td>Kembalian</td>
-                            <td>:</td>
-                            <td>{{ number_format($transaction->change) }}</td>
-                        </tr>
-                    </table>
+                        <h3>Ringkasan Pembayaran</h3>
+                        <table>
+                            <tr>
+                                <td>Total Harga</td>
+                                <td>:</td>
+                                <td><strong>{{ number_format($transaction->total_price) }}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Bayar</td>
+                                <td>:</td>
+                                <td>{{ number_format($transaction->payment) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Kembalian</td>
+                                <td>:</td>
+                                <td>{{ number_format($transaction->change) }}</td>
+                            </tr>
+                        </table>
 
-                    <br>
-                    <button class="btn">
-                        <a href="{{ route('transactions.index') }}" style="color:white;">← Kembali ke History</a>
-                    </button>
-                    @auth
-                        @if (auth()->user()->role === 'admin')
-                            <form action="{{ route('transactions.destroy', $transaction->id) }}" method="POST"
-                                style="display:inline" onsubmit="return confirm('Yakin ingin menghapus transaksi ini?')">
-                                @csrf
-                                @method('DELETE')
+                        <br>
+                        <button class="btn">
+                            <a href="{{ route('transactions.index') }}" style="color:white;">← Kembali ke History</a>
+                        </button>
+                        @auth
+                            @if (auth()->user()->role === 'admin')
+                                <form action="{{ route('transactions.destroy', $transaction->id) }}" method="POST"
+                                    style="display:inline"
+                                    onsubmit="return confirm('Yakin ingin menghapus transaksi ini?')">
+                                    @csrf
+                                    @method('DELETE')
 
-                                <button type="submit" class="back">
+                                    <button type="submit" class="back">
                                         Hapus Transaksi
-                                </button>
-                            </form>
-                        @endif
-                    @endauth
+                                    </button>
+                                </form>
+                            @endif
+                        @endauth
+                    </div>
                 </div>
-            </div>
         </main>
     </div>
 </body>

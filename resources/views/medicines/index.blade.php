@@ -62,45 +62,50 @@
                     <div class="section-header">
                         <h3 class="section-title">Daftar Obat</h3>
 
-                        <button class="btn"><a href="{{ route('medicines.create') }}" style="color:white;">Tambah</a></button>
+                        <button class="btn"><a href="{{ route('medicines.create') }}"
+                                style="color:white;">Tambah</a></button>
                     </div>
-                    <input type="text" id="search" placeholder="Cari kode / nama / kategori" >
+                    <input type="text" id="search" placeholder="Cari nama / kategori">
                     <br><br>
-                    <table>
-                        <thead>
-                            <tr>
-                                {{-- <th>Kode</th> --}}
-                                <th>Nama</th>
-                                <th>Stok</th>
-                                <th>Harga</th>
-                                <th>Kategori</th>
-                                <th>Expired</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody id="medicine-body">
-                            @foreach ($medicines as $m)
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
                                 <tr>
-                                    {{-- <td>{{ $m->code }}</td> --}}
-                                    <td>{{ $m->name }}</td>
-                                    <td>{{ $m->stock }}</td>
-                                    <td>{{ number_format($m->price) }}</td>
-                                    <td>{{ $m->category->name }}</td>
-                                    <td>{{ $m->expired_date }}</td>
-                                    <td>
-                                        <a href="{{ route('medicines.edit', $m->id) }}" style="color:blue;">Edit</a>
-                                        <form action="{{ route('medicines.destroy', $m->id) }}" method="POST"
-                                            style="display:inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" style="background-color:rgba(240, 248, 255, 0);
-                                                                        border:none;cursor: pointer;color:red; font-size:11px">Hapus</button>
-                                        </form>
-                                    </td>
+                                    {{-- <th>Kode</th> --}}
+                                    <th>Nama</th>
+                                    <th>Stok</th>
+                                    <th>Harga</th>
+                                    <th>Kategori</th>
+                                    <th>Expired</th>
+                                    <th>Aksi</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody id="medicine-body">
+                                @foreach ($medicines as $m)
+                                    <tr>
+                                        {{-- <td>{{ $m->code }}</td> --}}
+                                        <td>{{ $m->name }}</td>
+                                        <td>{{ $m->stock }}</td>
+                                        <td>{{ number_format($m->price) }}</td>
+                                        <td>{{ $m->category->name }}</td>
+                                        <td>{{ $m->expired_date }}</td>
+                                        <td>
+                                            <a href="{{ route('medicines.edit', $m->id) }}"
+                                                style="color:blue;">Edit</a>
+                                            <form action="{{ route('medicines.destroy', $m->id) }}" method="POST"
+                                                style="display:inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    style="background-color:rgba(240, 248, 255, 0);
+                                                                        border:none;cursor: pointer;color:red; font-size:11px">Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     {{ $medicines->links() }}
                 </div>
             </div>
@@ -142,6 +147,3 @@
             });
     });
 </script>
-
-
-

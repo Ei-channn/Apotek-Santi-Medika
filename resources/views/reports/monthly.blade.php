@@ -24,7 +24,8 @@
 
                     <div style="display: flex; justify-content: space-between">
                         <div style="display:grid; align-items:center;">
-                            <p><strong>Bulan:</strong> {{ date('F', mktime(0, 0, 0, $month, 1)) }} {{ $year }}</p>
+                            <p><strong>Bulan:</strong> {{ date('F', mktime(0, 0, 0, $month, 1)) }} {{ $year }}
+                            </p>
                             <p><strong>Total Penghasilan:</strong> Rp {{ number_format($totalIncome) }}</p>
                             <p><strong>Total Transaksi:</strong> {{ $totalTransaction }}</p>
                         </div>
@@ -48,31 +49,32 @@
                     </div>
 
                     <br>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Kasir</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($transactions as $trx)
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $trx->transaction_date }}</td>
-                                    <td>{{ $trx->user->name ?? '-' }}</td>
-                                    <td>Rp {{ number_format($trx->total_price) }}</td>
+                                    <th>No</th>
+                                    <th>Tanggal</th>
+                                    <th>Kasir</th>
+                                    <th>Total</th>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="4" align="center">Tidak ada transaksi</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @forelse ($transactions as $trx)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $trx->transaction_date }}</td>
+                                        <td>{{ $trx->user->name ?? '-' }}</td>
+                                        <td>Rp {{ number_format($trx->total_price) }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" align="center">Tidak ada transaksi</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                     {{-- Pagination --}}
                     {{ $transactions->links() }}
                 </div>

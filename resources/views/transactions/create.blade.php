@@ -60,7 +60,7 @@
             @include('layout.header')
             <div class="content-section" id="categories">
                 <div class="section-card">
-                    <div class="section-header">
+                    <div class="section-headerr">
 
                         <h2>Transaksi Penjualan</h2>
                         <div
@@ -70,41 +70,42 @@
                             align-items:center;
                         ">
 
-                            <label>Cari Obat</label><br>
-                            <input type="text" id="search" placeholder="kode / nama obat">
+                            <input type="text" id="search" placeholder=" cari nama obat">
                         </div>
                     </div>
 
-                    <table id="result">
-                        <thead>
-                            <tr>
-                                {{-- <th>Kode</th> --}}
-                                <th>Nama</th>
-                                <th>Kategori</th>
-                                <th>Harga</th>
-                                <th>Stok</th>
-                                <th>Expired</th>
-                                {{-- <th>Aksi</th> --}}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($medicines as $m)
-                                <tr onclick='addItem(@json($m))' style="cursor:pointer;">
-                                    {{-- <td>{{ $m->code }}</td> --}}
-                                    <td>{{ $m->name }}</td>
-                                    <td>{{ $m->category->name }}</td>
-                                    <td>{{ number_format($m->price) }}</td>
-                                    <td>{{ $m->stock }}</td>
-                                    <td>{{ $m->expired_date ?? '-' }}</td>
-                                    {{-- <td>
+                    <div class="table-wrapper">
+                        <table id="result">
+                            <thead>
+                                <tr>
+                                    {{-- <th>Kode</th> --}}
+                                    <th>Nama</th>
+                                    <th>Kategori</th>
+                                    <th>Harga</th>
+                                    <th>Stok</th>
+                                    <th>Expired</th>
+                                    {{-- <th>Aksi</th> --}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($medicines as $m)
+                                    <tr onclick='addItem(@json($m))' style="cursor:pointer;">
+                                        {{-- <td>{{ $m->code }}</td> --}}
+                                        <td>{{ $m->name }}</td>
+                                        <td>{{ $m->category->name }}</td>
+                                        <td>{{ number_format($m->price) }}</td>
+                                        <td>{{ $m->stock }}</td>
+                                        <td>{{ $m->expired_date ?? '-' }}</td>
+                                        {{-- <td>
                                         <button type="button" onclick="event.stopPropagation()">
                                             Pilih
                                         </button>
                                     </td> --}}
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
                     <br><br>
 
@@ -131,8 +132,7 @@
                         </p><br>
                         <div style="display: flex; align-items:center; gap:5px">
                             <label>Bayar</label><br>
-                            <input type="number" name="payment" class="payment"
-                            required>
+                            <input type="number" name="payment" class="payment" required>
                         </div>
 
                         <br><br>
