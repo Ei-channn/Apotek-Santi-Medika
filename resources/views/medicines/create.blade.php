@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apotek Santi Medika</title>
     <link rel="icon" type="image/png" href="{{ asset('logo-apotek.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css?v=2') }}">
     <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 </head>
 
